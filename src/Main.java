@@ -1,4 +1,107 @@
-//this code is used for how to insert data in database.
+//this code is used for how to update data in database.
+import java.sql.*;
+
+public class Main {
+    public static void main(String[] args)throws ClassNotFoundException {
+
+        String url="jdbc:mysql://localhost:3306/mydatabase";
+        String username="root";
+        String password="Rush@1311";
+        String query="UPDATE employees\n"+
+                "SET job_title='java developer',salary=1900000.0\n"+
+                "WHERE id=1;";
+
+        //used to load connection drivers
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Driver Loaded Successfully...,  ");
+        }
+        catch (ClassNotFoundException e){
+            System.out.println(e.getMessage());
+
+        }
+
+        //used to connect with database
+        try{
+            Connection con =DriverManager.getConnection(url,username,password);
+            System.out.println("Connection Establish Successfully....,   ");
+            Statement stmt=con.createStatement();
+            int rowsaffected = stmt.executeUpdate(query);//executeUpdate() used to insert data into DB //rowsaffected is used to check the no of rows data is filled
+            if (rowsaffected>0){
+                System.out.println("Updation Successfull."+rowsaffected+" row(s) affected. ");
+            }else{
+                System.out.println("Updation failed !!");
+            }
+
+
+
+            //We closed all the Instances that we created above
+            stmt.close();
+            con.close();
+            System.out.println();
+            System.out.println("Connection closed successfully!! ");
+        } catch (SQLException e) {
+            System.out.println("Connection Failed !! "+e.getMessage());
+        }
+
+    }
+}
+
+
+
+
+
+
+/*//this code is used for how to delete data in database.
+import java.sql.*;
+
+public class Main {
+    public static void main(String[] args)throws ClassNotFoundException {
+
+        String url="jdbc:mysql://localhost:3306/mydatabase";
+        String username="root";
+        String password="Rush@1311";
+        String query="DELETE FROM employees WHERE id=3;";
+
+        //used to load connection drivers
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Driver Loaded Successfully...,  ");
+        }
+        catch (ClassNotFoundException e){
+            System.out.println(e.getMessage());
+
+        }
+
+        //used to connect with database
+        try{
+            Connection con =DriverManager.getConnection(url,username,password);
+            System.out.println("Connection Establish Successfully....,   ");
+            Statement stmt=con.createStatement();
+            int rowsaffected = stmt.executeUpdate(query);//executeUpdate() used to insert data into DB //rowsaffected is used to check the no of rows data is filled
+            if (rowsaffected>0){
+                System.out.println("Deletion Successfull."+rowsaffected+" row(s) affected. ");
+            }else{
+                System.out.println("Deletion failed !!");
+            }
+
+
+
+            //We closed all the Instances that we created above
+            stmt.close();
+            con.close();
+            System.out.println();
+            System.out.println("Connection closed successfully!! ");
+        } catch (SQLException e) {
+            System.out.println("Connection Failed !! "+e.getMessage());
+        }
+
+    }
+}*/
+
+
+
+/*//this code is used for how to insert data in database.
 import java.sql.*;
 
 public class Main {
@@ -43,7 +146,7 @@ public class Main {
         }
 
     }
-}
+}*/
 
 
 
